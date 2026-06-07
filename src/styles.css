@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+:root {
+  color: #3f474d;
+  background: #ecf0f3;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #ecf0f3;
+}
+
+button {
+  font: inherit;
+}
+
+.soft-panel {
+  border-radius: 30px;
+  background: #ecf0f3;
+  box-shadow:
+    inset 5px 5px 12px #ffffff,
+    12px 12px 28px rgba(71, 92, 104, 0.18),
+    -12px -12px 28px #ffffff;
+}
+
+.soft-inset {
+  border-radius: 26px;
+  background: #ecf0f3;
+  box-shadow:
+    inset -5px -5px 12px #ffffff,
+    inset 5px 5px 12px rgba(71, 92, 104, 0.18);
+}
+
+.calculator-button {
+  display: inline-flex;
+  width: 100%;
+  min-width: 0;
+  height: clamp(4.2rem, 8.5vw, 5.25rem);
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: #ecf0f3;
+  box-shadow:
+    -5px -5px 12px #ffffff,
+    5px 5px 12px rgba(71, 92, 104, 0.18);
+  font-size: 1.08rem;
+  font-weight: 800;
+  outline: none;
+  transition:
+    box-shadow 140ms ease,
+    transform 140ms ease,
+    color 140ms ease;
+}
+
+.calculator-keypad {
+  grid-auto-rows: clamp(4.2rem, 8.5vw, 5.25rem);
+}
+
+.calculator-button-wide {
+  border-radius: 999px;
+}
+
+.calculator-button-equal {
+  color: #ffffff;
+  background: #527b7f;
+  text-shadow: 0 1px 2px rgba(32, 55, 58, 0.35);
+  box-shadow:
+    inset 4px 4px 9px rgba(255, 255, 255, 0.2),
+    inset -4px -4px 9px rgba(28, 55, 58, 0.22),
+    -5px -5px 12px #ffffff,
+    6px 6px 14px rgba(71, 92, 104, 0.2);
+}
+
+.calculator-button.calculator-button-equal:active {
+  background: #496f73;
+  box-shadow:
+    inset -4px -4px 10px rgba(255, 255, 255, 0.14),
+    inset 4px 4px 10px rgba(28, 55, 58, 0.26);
+}
+
+.calculator-button:hover {
+  transform: translateY(-1px);
+}
+
+.calculator-button:active {
+  transform: translateY(1px);
+  box-shadow:
+    inset -4px -4px 10px #ffffff,
+    inset 4px 4px 10px rgba(71, 92, 104, 0.18);
+}
+
+.calculator-button:focus-visible,
+.soft-small-button:focus-visible,
+.soft-history-item:focus-visible {
+  outline: 3px solid rgba(82, 123, 127, 0.28);
+  outline-offset: 3px;
+}
+
+.soft-small-button {
+  min-height: 42px;
+  border: 0;
+  border-radius: 999px;
+  background: #ecf0f3;
+  box-shadow:
+    -5px -5px 12px rgba(255, 255, 255, 0.95),
+    5px 5px 12px rgba(71, 92, 104, 0.12);
+}
+
+.soft-small-button:active {
+  box-shadow:
+    inset -4px -4px 10px #ffffff,
+    inset 4px 4px 10px rgba(71, 92, 104, 0.16);
+}
+
+.soft-history-item {
+  width: 100%;
+  min-height: 74px;
+  border: 0;
+  border-radius: 20px;
+  background: #ecf0f3;
+  padding: 14px 16px;
+  box-shadow:
+    -6px -6px 14px rgba(255, 255, 255, 0.92),
+    6px 6px 14px rgba(71, 92, 104, 0.1);
+  transition:
+    box-shadow 140ms ease,
+    transform 140ms ease;
+}
+
+.soft-history-item:hover {
+  transform: translateY(-1px);
+}
+
+.soft-history-item:active {
+  box-shadow:
+    inset -4px -4px 10px #ffffff,
+    inset 4px 4px 10px rgba(71, 92, 104, 0.16);
+}
+
+.scrollbar-soft {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(82, 123, 127, 0.35) transparent;
+}
+
+.scrollbar-soft::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-soft::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(82, 123, 127, 0.35);
+}
