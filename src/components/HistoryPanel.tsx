@@ -34,10 +34,10 @@ export function HistoryPanel({ history, onUseHistoryItem, onClearHistory }: Hist
               onClick={() => onUseHistoryItem(item)}
               type="button"
             >
-              <span className="block overflow-hidden text-ellipsis whitespace-nowrap text-sm font-semibold text-[#8a969d]">
+              <span className="history-expression block overflow-hidden text-ellipsis whitespace-nowrap text-sm font-semibold text-[#8a969d]">
                 {item.expression}
               </span>
-              <span className="mt-1 block overflow-hidden text-ellipsis whitespace-nowrap text-xl font-bold text-[#3f474d]">
+              <span className="history-result mt-1 block overflow-hidden text-ellipsis whitespace-nowrap text-xl font-bold text-[#3f474d]">
                 {item.result}
               </span>
             </button>
