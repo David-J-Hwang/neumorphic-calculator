@@ -8,8 +8,8 @@ type HistoryPanelProps = {
 
 export function HistoryPanel({ history, onUseHistoryItem, onClearHistory }: HistoryPanelProps) {
   return (
-    <aside className="soft-panel flex h-full min-h-[360px] w-full flex-col gap-4 p-5 lg:w-[320px]">
-      <div className="flex items-center justify-between gap-3">
+    <aside className="history-panel soft-panel">
+      <div className="history-panel-header">
         <h2 className="text-lg font-bold text-[#3f474d]">History</h2>
         <button
           className="soft-small-button px-4 text-sm font-bold text-[#cf6b4c] disabled:cursor-not-allowed disabled:opacity-40"
@@ -26,7 +26,7 @@ export function HistoryPanel({ history, onUseHistoryItem, onClearHistory }: Hist
           No history yet
         </div>
       ) : (
-        <div className="scrollbar-soft -mx-2 flex flex-1 flex-col gap-4 overflow-y-auto px-2 pb-2 pt-1">
+        <div className="history-list scrollbar-soft">
           {history.map((item) => (
             <button
               className="soft-history-item text-left"

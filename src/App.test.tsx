@@ -30,4 +30,21 @@ describe('App', () => {
 
     expect(within(display).getByText('3')).toBeInTheDocument();
   });
+
+  it('adds double zero without expanding an empty zero value', async () => {
+    const user = userEvent.setup();
+
+    render(<App />);
+
+    await user.click(screen.getByRole('button', { name: '00' }));
+
+    const display = screen.getByRole('region', { name: 'Calculator display' });
+
+    expect(display).toHaveTextContent('0');
+
+    await user.click(screen.getByRole('button', { name: '1' }));
+    await user.click(screen.getByRole('button', { name: '00' }));
+
+    expect(display).toHaveTextContent('100');
+  });
 });

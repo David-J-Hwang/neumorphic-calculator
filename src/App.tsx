@@ -148,9 +148,10 @@ function App() {
                 +
               </CalculatorButton>
 
-              <CalculatorButton onClick={() => calculator.inputDigit('0')} wide>
+              <CalculatorButton onClick={() => calculator.inputDigit('0')}>
                 0
               </CalculatorButton>
+              <CalculatorButton onClick={calculator.inputDoubleZero}>00</CalculatorButton>
               <CalculatorButton onClick={calculator.inputDecimal}>.</CalculatorButton>
               <CalculatorButton onClick={calculator.calculate} tone="equal">
                 =
@@ -158,7 +159,7 @@ function App() {
             </div>
           </section>
 
-          <div className="hidden lg:block">
+          <div className="history-column hidden lg:block">
             <HistoryPanel
               history={calculator.history}
               onClearHistory={calculator.clearHistory}

@@ -105,6 +105,33 @@ export function useCalculator() {
     [error, justEvaluated, setNewExpression]
   );
 
+  const inputDoubleZero = useCallback(() => {
+    if (justEvaluated || error) {
+      setNewExpression('0');
+      return;
+    }
+
+    setExpression((current) => {
+      const last = current.at(-1);
+
+      if (!last || isOperator(last) || last === '(') {
+        return `${current}0`;
+      }
+
+      if (last === ')' || last === '%') {
+        return `${current}×0`;
+      }
+
+      const segment = current.match(/(?:^|[+\-×÷(])(-?\d+\.?\d*)$/)?.[1];
+
+      if (segment === '0' || segment === '-0') {
+        return current;
+      }
+
+      return `${current}00`;
+    });
+  }, [error, justEvaluated, setNewExpression]);
+
   const inputDecimal = useCallback(() => {
     if (justEvaluated || error) {
       setNewExpression('0.');
@@ -299,6 +326,7 @@ export function useCalculator() {
     isHistoryOpen,
     setIsHistoryOpen,
     inputDigit,
+    inputDoubleZero,
     inputDecimal,
     inputOperator,
     inputPercent,

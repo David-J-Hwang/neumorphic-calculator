@@ -63,7 +63,7 @@ button {
   display: grid;
   width: 100%;
   max-width: 72rem;
-  align-items: start;
+  align-items: stretch;
   justify-content: center;
   gap: 1.5rem;
 }
@@ -161,10 +161,6 @@ button {
   width: 100%;
 }
 
-.calculator-button-wide {
-  border-radius: 999px;
-}
-
 .calculator-button-equal {
   color: #ffffff;
   background: #527b7f;
@@ -242,6 +238,40 @@ button {
     inset 4px 4px 10px rgba(71, 92, 104, 0.16);
 }
 
+.history-column {
+  min-height: 0;
+  height: 100%;
+}
+
+.history-panel {
+  display: flex;
+  width: 100%;
+  min-height: 0;
+  height: 100%;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem;
+}
+
+.history-panel-header {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.history-list {
+  display: flex;
+  min-height: 0;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+  margin-inline: -0.5rem;
+  padding: 0.25rem 0.5rem 0.5rem;
+}
+
 .history-expression,
 .history-result {
   font-family: var(--font-calculator);
@@ -265,6 +295,10 @@ button {
 @media (min-width: 1024px) {
   .app-grid {
     grid-template-columns: minmax(20rem, 26.25rem) 20rem;
+  }
+
+  .history-panel {
+    max-height: 100%;
   }
 }
 

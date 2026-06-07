@@ -5,7 +5,6 @@ type ButtonTone = 'number' | 'operator' | 'control' | 'equal';
 type CalculatorButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode;
   tone?: ButtonTone;
-  wide?: boolean;
 };
 
 const toneClassNames: Record<ButtonTone, string> = {
@@ -18,7 +17,6 @@ const toneClassNames: Record<ButtonTone, string> = {
 export function CalculatorButton({
   children,
   tone = 'number',
-  wide = false,
   className = '',
   ...props
 }: CalculatorButtonProps) {
@@ -27,7 +25,6 @@ export function CalculatorButton({
       className={[
         'calculator-button',
         toneClassNames[tone],
-        wide ? 'calculator-button-wide col-span-2' : '',
         className
       ].join(' ')}
       type="button"
