@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import { CalculatorButton } from './components/CalculatorButton';
 import { Display } from './components/Display';
@@ -7,6 +7,36 @@ import { useCalculator } from './hooks/useCalculator';
 
 function App() {
   const calculator = useCalculator();
+  const calculatorRef = useRef<HTMLElement | null>(null);
+  const [calculatorHeight, setCalculatorHeight] = useState<number>();
+
+  useLayoutEffect(() => {
+    const calculatorElement = calculatorRef.current;
+
+    if (!calculatorElement) {
+      return;
+    }
+
+    const updateHeight = () => {
+      setCalculatorHeight(calculatorElement.getBoundingClientRect().height);
+    };
+
+    updateHeight();
+
+    const observer =
+      'ResizeObserver' in window
+        ? new ResizeObserver(updateHeight)
+        : undefined;
+
+    observer?.observe(calculatorElement);
+
+    window.addEventListener('resize', updateHeight);
+
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener('resize', updateHeight);
+    };
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -72,7 +102,7 @@ function App() {
     <main className="app-page text-[#3f474d]">
       <div className="app-frame mx-auto">
         <div className="app-grid">
-          <section className="calculator-card soft-panel">
+          <section className="calculator-card soft-panel" ref={calculatorRef}>
             <header className="calculator-header">
               <div className="min-w-0">
                 <h1 className="calculator-title">Neumorphic Calculator</h1>
@@ -159,7 +189,10 @@ function App() {
             </div>
           </section>
 
-          <div className="history-column hidden lg:block">
+          <div
+            className="history-column hidden lg:block"
+            style={calculatorHeight ? { height: `${calculatorHeight}px` } : undefined}
+          >
             <HistoryPanel
               history={calculator.history}
               onClearHistory={calculator.clearHistory}
@@ -171,7 +204,7 @@ function App() {
 
       {calculator.isHistoryOpen ? (
         <div className="fixed inset-0 z-20 bg-[#3f474d]/25 p-4 backdrop-blur-sm lg:hidden">
-          <div className="ml-auto flex h-full max-w-sm flex-col gap-3">
+          <div className="ml-auto flex h-full min-h-0 max-w-sm flex-col gap-3">
             <button
               className="soft-small-button ml-auto px-4 text-sm font-bold text-[#476f73]"
               onClick={() => calculator.setIsHistoryOpen(false)}
@@ -179,11 +212,13 @@ function App() {
             >
               Close
             </button>
-            <HistoryPanel
-              history={calculator.history}
-              onClearHistory={calculator.clearHistory}
-              onUseHistoryItem={calculator.useHistoryItem}
-            />
+            <div className="min-h-0 flex-1">
+              <HistoryPanel
+                history={calculator.history}
+                onClearHistory={calculator.clearHistory}
+                onUseHistoryItem={calculator.useHistoryItem}
+              />
+            </div>
           </div>
         </div>
       ) : null}
