@@ -18,7 +18,7 @@
 body {
   margin: 0;
   min-width: 320px;
-  min-height: 100vh;
+  min-height: 100svh;
   background: #ecf0f3;
 }
 
@@ -43,11 +43,91 @@ button {
     inset 5px 5px 12px rgba(71, 92, 104, 0.18);
 }
 
+.app-page {
+  min-height: 100svh;
+  overflow-x: hidden;
+  background: #ecf0f3;
+  padding: clamp(0.75rem, 2.5vw, 1.5rem);
+}
+
+.app-frame {
+  display: flex;
+  width: 100%;
+  min-height: calc(100svh - clamp(1.5rem, 5vw, 3rem));
+  align-items: center;
+  justify-content: center;
+}
+
+.app-grid {
+  display: grid;
+  width: 100%;
+  max-width: 72rem;
+  align-items: start;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.calculator-card {
+  display: flex;
+  width: min(100%, 26.25rem);
+  min-width: 0;
+  flex-direction: column;
+  gap: clamp(0.75rem, 2.2svh, 1.25rem);
+  padding: clamp(0.9rem, 3vw, 1.5rem);
+}
+
+.calculator-header {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.calculator-title {
+  margin: 0;
+  color: #3f474d;
+  font-size: clamp(1.05rem, 5.4vw, 1.25rem);
+  font-weight: 900;
+  line-height: 1.16;
+  letter-spacing: 0;
+}
+
+.calculator-subtitle {
+  margin-top: 0.25rem;
+  color: #8a969d;
+  font-size: clamp(0.8rem, 3.6vw, 0.9rem);
+  font-weight: 700;
+}
+
+.calculator-display {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  min-height: clamp(6.6rem, 18svh, 9.25rem);
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  overflow: hidden;
+  padding: clamp(0.9rem, 3.8vw, 1.25rem);
+  text-align: right;
+}
+
+.calculator-display-line {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 .calculator-button {
   display: inline-flex;
   width: 100%;
   min-width: 0;
-  height: clamp(4.2rem, 8.5vw, 5.25rem);
+  height: 100%;
   align-items: center;
   justify-content: center;
   border: 0;
@@ -66,7 +146,16 @@ button {
 }
 
 .calculator-keypad {
-  grid-auto-rows: clamp(4.2rem, 8.5vw, 5.25rem);
+  --button-size: clamp(3.2rem, 16vw, 5.25rem);
+  --keypad-gap: clamp(0.55rem, 2.4vw, 0.75rem);
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, var(--button-size)));
+  grid-auto-rows: var(--button-size);
+  justify-content: space-between;
+  gap: var(--keypad-gap);
+  min-width: 0;
+  width: 100%;
 }
 
 .calculator-button-wide {
@@ -163,4 +252,76 @@ button {
 .scrollbar-soft::-webkit-scrollbar-thumb {
   border-radius: 999px;
   background: rgba(82, 123, 127, 0.35);
+}
+
+@media (min-width: 1024px) {
+  .app-grid {
+    grid-template-columns: minmax(20rem, 26.25rem) 20rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-page {
+    padding: 0.6rem;
+  }
+
+  .app-frame {
+    min-height: calc(100svh - 1.2rem);
+  }
+
+  .calculator-card {
+    width: min(100%, 23rem);
+    border-radius: 24px;
+    gap: clamp(0.65rem, 1.9svh, 0.95rem);
+    padding: clamp(0.8rem, 3.8vw, 1rem);
+  }
+
+  .calculator-display {
+    min-height: clamp(5.8rem, 16svh, 7.25rem);
+    border-radius: 22px;
+    gap: 0.45rem;
+  }
+
+  .calculator-keypad {
+    --button-size: min(3.65rem, calc((100vw - 5.5rem) / 4));
+    --keypad-gap: clamp(0.45rem, 2vw, 0.65rem);
+  }
+
+  .calculator-button {
+    box-shadow:
+      -4px -4px 10px #ffffff,
+      4px 4px 10px rgba(71, 92, 104, 0.16);
+    font-size: 1rem;
+  }
+
+  .soft-small-button {
+    min-height: 38px;
+    padding-inline: 1rem;
+  }
+}
+
+@media (max-height: 740px) and (max-width: 480px) {
+  .calculator-card {
+    gap: 0.55rem;
+    padding: 0.75rem;
+  }
+
+  .calculator-title {
+    font-size: 1rem;
+  }
+
+  .calculator-subtitle {
+    margin-top: 0.1rem;
+    font-size: 0.76rem;
+  }
+
+  .calculator-display {
+    min-height: 5.25rem;
+    padding: 0.75rem;
+  }
+
+  .calculator-keypad {
+    --button-size: min(3.1rem, calc((100vw - 5rem) / 4));
+    --keypad-gap: 0.42rem;
+  }
 }

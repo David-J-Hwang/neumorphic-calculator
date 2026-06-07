@@ -13,16 +13,16 @@ export function Display({ expression, result, preview, error }: DisplayProps) {
   const secondaryFontSize = getFittingFontSize(secondaryText.trim(), 0.9, 0.66, 12);
 
   return (
-    <section className="soft-inset flex min-h-[148px] flex-col justify-end gap-3 overflow-hidden px-5 py-4 text-right">
+    <section aria-label="Calculator display" className="calculator-display soft-inset">
       <div
-        className="min-h-6 overflow-hidden whitespace-nowrap font-semibold text-[#8a969d]"
+        className="calculator-display-line min-h-6 font-semibold text-[#8a969d]"
         style={{ fontSize: secondaryFontSize }}
       >
         {secondaryText}
       </div>
       <div
         className={[
-          'overflow-hidden whitespace-nowrap font-semibold leading-none tracking-normal',
+          'calculator-display-line font-semibold leading-none tracking-normal',
           error ? 'text-[#cf6b4c]' : 'text-[#3f474d]'
         ].join(' ')}
         style={{ fontSize: primaryFontSize }}

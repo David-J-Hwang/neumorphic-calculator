@@ -69,14 +69,14 @@ function App() {
   }, [calculator]);
 
   return (
-    <main className="min-h-dvh bg-[#ecf0f3] px-4 py-6 text-[#3f474d] sm:px-6 lg:px-8">
-      <div className="mx-auto flex min-h-[calc(100dvh-3rem)] w-full max-w-6xl items-center justify-center">
-        <div className="grid w-full items-start gap-6 lg:grid-cols-[minmax(320px,420px)_320px] lg:justify-center">
-          <section className="soft-panel mx-auto flex w-full max-w-[420px] flex-col gap-5 p-5 sm:p-6">
-            <header className="flex items-center justify-between gap-3">
-              <div>
-                <h1 className="text-xl font-black tracking-normal text-[#3f474d]">Neumorphic Calculator</h1>
-                <p className="mt-1 text-sm font-semibold text-[#8a969d]">Basic mode</p>
+    <main className="app-page text-[#3f474d]">
+      <div className="app-frame mx-auto">
+        <div className="app-grid">
+          <section className="calculator-card soft-panel">
+            <header className="calculator-header">
+              <div className="min-w-0">
+                <h1 className="calculator-title">Neumorphic Calculator</h1>
+                <p className="calculator-subtitle">Basic mode</p>
               </div>
               <button
                 className="soft-small-button px-4 text-sm font-bold text-[#476f73] lg:hidden"
@@ -94,7 +94,7 @@ function App() {
               result={calculator.result}
             />
 
-            <div className="calculator-keypad grid grid-cols-4 gap-3">
+            <div className="calculator-keypad">
               <CalculatorButton onClick={calculator.clearAll} tone="control">
                 AC
               </CalculatorButton>
